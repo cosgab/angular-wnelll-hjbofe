@@ -1,0 +1,37 @@
+<div class="control-section">
+  <button ej-button id='putFilter' (click)='getFilter()'>locale filtro</button>
+	<ejs-querybuilder #querybuilder width="400px" [dataSource]='data' enableNotCondition="true" locale='It-it'
+		matchCase='false' summaryView="true">
+		<e-columns>
+			<e-column *ngFor="let elemento of elementi" field={{elemento.nome}} label={{elemento.testo}}
+				type={{elemento.type}}>
+			</e-column>
+		</e-columns>
+	</ejs-querybuilder>`
+	<ejs-grid #grid [dataSource]='data' (load)='onLoad($event)' height='350'>
+		<ng-template #toolbarTemplate let-data>
+			<ejs-toolbar>
+				<e-items>
+					<e-item id='collapse' prefixIcon='e-collapse'>
+						<ng-template #template>
+							<div class="e-input-group">
+								<input class="e-input" name='input' id="toolSearch" type="text" placeholder="Search" />
+								<span class="e-input-group-icon e-search-icon e-icons"></span>
+							</div>
+						</ng-template>
+					</e-item>
+				</e-items>
+			</ejs-toolbar>
+		</ng-template>
+		<e-columns>
+			<e-column field='OrderID' headerText='Order ID' width='120' textAlign='Right'></e-column>
+			<e-column field='CustomerName' headerText='Customer Name' width='150'></e-column>
+			<e-column field='OrderDate' headerText='Order Date' width='130' [format]="format" textAlign='Right'>
+			</e-column>
+			<e-column field='Freight' headerText='Freight' width='120' format='C2' textAlign='Right'></e-column>
+			<e-column field='ShippedDate' headerText='Shipped Date' width='130' [format]="format" textAlign='Right'>
+			</e-column>
+			<e-column field='ShipCountry' headerText='Ship Country' width='150'></e-column>
+		</e-columns>
+	</ejs-grid>
+</div>
